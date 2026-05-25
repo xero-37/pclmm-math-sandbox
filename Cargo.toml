@@ -1,0 +1,8 @@
+[package]
+name = "pclmm-math-sandbox"
+version = "0.1.0"
+edition = "2021"
+description = "An educational sandbox for AMM math formulas"
+
+[dependencies]
+# No external dependencies needed as per requirements
