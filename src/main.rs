@@ -24,6 +24,6 @@ fn main() {
     let current_price=1.0;
     let p_a=0.99;
     let p_b=1.01;
-    let (x,y) = calculate_real_reserves(l_depth,current_price,p_a,p_b);
+    let (x,y) = v3_math::calculate_real_reserves(l_depth,current_price,p_a,p_b);
     println!("The x_real is {} and y_real is {}",x,y);
 }
