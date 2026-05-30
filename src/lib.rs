@@ -48,7 +48,7 @@ pub mod v3_math {
 #[cfg(test)]
 mod tests {
     use super::v2_math::*;
-
+    use super::v3_math::*;
     #[test]
     fn test_v2_swap() {
         let reserve_x = 100.0;
