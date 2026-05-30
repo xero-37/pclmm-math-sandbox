@@ -18,6 +18,6 @@ fn main() {
     );
 
     // The following call will panic until implemented in lib.rs
-    // let amount_out = v2_math::calculate_swap_output(r_x, r_y, amount_in, fee);
-    // println!("Swap Result: {} Y", amount_out);
+    let amount_out = v2_math::calculate_swap_output(r_x, r_y, amount_in, fee);
+    println!("Swap Result: {} Y", amount_out);
 }
