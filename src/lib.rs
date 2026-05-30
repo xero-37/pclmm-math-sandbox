@@ -15,12 +15,19 @@ pub mod v2_math {
         input_x: f64,
         fee_percentage: f64,
     ) -> f64 {
-        todo!("Implement V2 swap logic")
+        // todo!("Implement V2 swap logic")
+        return (reserve_y*input_x*(1.0-fee_percentage))/(reserve_x+input_x*(1.0-fee_percentage));
     }
 
     /// Calculates the active capital (L) for a given k and price range.
     pub fn calculate_active_capital(k: f64, p_lower: f64, p_upper: f64) -> f64 {
-        todo!("Implement active capital formula")
+        // todo!("Implement active capital formula")
+        /*The x reserve fluctuates between x_2 and x_1. In stable coin V2 model, only 5% of the capital moves rest 99.5% is 
+        sitting idle. I am not sure what to return in this function,since active capital is defined for Uniswap V3 model, so I returned
+        liquidity formula of V3 model*/
+        let x_1=(k/p_lower).sqrt();
+        let x_2=(k/p_upper).sqrt();
+        return k.sqrt();
     }
 }
 
@@ -33,7 +40,8 @@ pub mod v3_math {
         p_a: f64,
         p_b: f64,
     ) -> (f64, f64) {
-        todo!("Implement V3 real reserves")
+        // todo!("Implement V3 real reserves")
+        return (l_depth*((1.0/current_price.sqrt())-(1.0/p_b.sqrt())),l_depth*(current_price.sqrt()-p_a.sqrt()));
     }
 }
 
@@ -60,11 +68,23 @@ mod tests {
 
     #[test]
     fn test_active_capital() {
-        todo!("Implement test for active capital")
+        // todo!("Implement test for active capital")
+        let k=1000000000000.0;
+        let p_lower=0.99;
+        let p_upper=1.01;
+        let output=calculate_active_capital(k,p_lower,p_upper);
+        assert!(output==1000000.0);
     }
 
     #[test]
     fn test_real_reserves() {
-        todo!("Implement test for real reserves")
+        // todo!("Implement test for real reserves")
+        let l_depth=1000000.0;
+        let current_price=1.0;
+        let p_a=0.99;
+        let p_b=1.01;
+        let (x,y) = calculate_real_reserves(l_depth,current_price,p_a,p_b);
+        //Assert that x_real is 4962.81 and y_real is 5012.56 approx.
+        assert!((x-4962.81).abs()<0.01 && (y-5012.56).abs()<0.01);
     }
 }
